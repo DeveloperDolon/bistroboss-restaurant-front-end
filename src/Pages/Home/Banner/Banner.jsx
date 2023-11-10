@@ -11,25 +11,25 @@ import "./style.css";
 
 const Banner = () => {
     return (
-        <div className="min-h-screen">
-             <Carousel showArrows={true} className="text-center md:h-screen w-full overflow-x-hidden" autoPlay={true} infiniteLoop={true} dynamicHeight={true}>
+        <div className="min-h-screen md:mt-0 mt-16 w-full">
+             <Carousel showArrows={true} className="text-center md:h-screen w-full" autoPlay={true} infiniteLoop={true} dynamicHeight={true}>
                 <div>
-                    <img className="h-[calc(100vh-100px)] w-full object-cover" src={img1} />
+                    <img className="md:h-[calc(100vh-116px)] h-auto w-full object-cover" src={img1} />
                 </div>
                 <div>
-                    <img className="h-[calc(100vh-100px)] w-full object-cover" src={img2} />
+                    <img className="md:h-[calc(100vh-116px)] h-auto w-full object-cover" src={img2} />
                 </div>
                 <div>
-                    <img className="h-[calc(100vh-100px)] w-full object-cover" src={img3} />
+                    <img className="md:h-[calc(100vh-116px)] h-auto w-full object-cover" src={img3} />
                 </div>
                 <div>
-                    <img className="h-[calc(100vh-100px)] w-full object-cover" src={img4} />
+                    <img className="md:h-[calc(100vh-116px)] h-auto w-full object-cover" src={img4} />
                 </div>
                 <div>
-                    <img className="h-[calc(100vh-100px)] w-full object-cover" src={img5} />
+                    <img className="md:h-[calc(100vh-116px)] h-auto w-full object-cover" src={img5} />
                 </div>
                 <div>
-                    <img className="h-[calc(100vh-100px)] w-full object-cover" src={img6} />
+                    <img className="md:h-[calc(100vh-116px)] h-auto w-full object-cover" src={img6} />
                 </div>
             </Carousel>
         </div>
