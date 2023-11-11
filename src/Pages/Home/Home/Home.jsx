@@ -6,6 +6,7 @@ import MenuSection from "../Menu/MenuSection";
 import SessionTItle from "../../../Component/SessionTItle";
 import ChefRecommends from "../ChefRecommends/ChefRecommends";
 import OurMenu from "../OurMenu/OurMenu";
+import Testimonial from "../Testimonial/Testimonial";
 
 
 const Home = () => {
@@ -49,7 +50,7 @@ const Home = () => {
             </div>
 
             <OurMenu></OurMenu>
-
+            <Testimonial></Testimonial>
             
         </div>
     );

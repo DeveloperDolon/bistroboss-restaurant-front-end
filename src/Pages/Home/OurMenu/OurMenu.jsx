@@ -3,6 +3,7 @@ import "./style.css";
 import backImg from "../../../assets/home/featured.jpg";
 
 const OurMenu = () => {
+    
     return (
         <div className="menus-container py-24 text-white">
             <div className="relative z-30">
