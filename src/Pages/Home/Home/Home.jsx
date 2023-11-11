@@ -5,6 +5,7 @@ import chefService from "../../../assets/home/chef-service.jpg";
 import MenuSection from "../Menu/MenuSection";
 import SessionTItle from "../../../Component/SessionTItle";
 import ChefRecommends from "../ChefRecommends/ChefRecommends";
+import OurMenu from "../OurMenu/OurMenu";
 
 
 const Home = () => {
@@ -46,6 +47,10 @@ const Home = () => {
                     <ChefRecommends></ChefRecommends>
                 </div>
             </div>
+
+            <OurMenu></OurMenu>
+
+            
         </div>
     );
 };

@@ -1,0 +1,6 @@
+.menus-container {
+    background: url("../../../assets/home/featured.jpg") no-repeat center center;
+    background-size: cover; 
+    background-attachment: fixed;
+    position: relative;
+}
