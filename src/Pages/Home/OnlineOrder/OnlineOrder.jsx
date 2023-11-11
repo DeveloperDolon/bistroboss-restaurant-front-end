@@ -28,7 +28,7 @@ const OnlineOrder = () => {
                 title="Order Online"
             ></SessionTItle>
 
-            <div className='lg:max-w-5xl md:max-w-3xl sm:max-w-xl mx-auto max-w-xs mt-10'>
+            <div className='xl:max-w-7xl lg:max-w-5xl md:max-w-3xl sm:max-w-xl mx-auto max-w-xs mt-10'>
                 <Swiper
                     slidesPerView={1}
                     spaceBetween={10}
@@ -52,20 +52,25 @@ const OnlineOrder = () => {
                     modules={[Pagination]}
                     className="mySwiper"
                 >
-                    <SwiperSlide>
+                    <SwiperSlide className='relative'>
                         <img src={pImg1} alt="" />
+                        <h2 className='cinzel-text absolute bottom-5 w-full text-center md:text-3xl text-xl font-semibold text-white'>Salad</h2>
                     </SwiperSlide>
-                    <SwiperSlide>
+                    <SwiperSlide className='relative'>
                         <img src={pImg2} alt="" />
+                        <h2 className='cinzel-text absolute bottom-5 w-full text-center md:text-3xl text-xl font-semibold text-white'>Soups</h2>
                     </SwiperSlide>
-                    <SwiperSlide>
+                    <SwiperSlide className='relative'>
                         <img src={pImg3} alt="" />
+                        <h2 className='cinzel-text absolute bottom-5 w-full text-center md:text-3xl text-xl font-semibold text-white'>Pizzas</h2>
                     </SwiperSlide>
-                    <SwiperSlide>
+                    <SwiperSlide className='relative'>
                         <img src={pImg4} alt="" />
+                        <h2 className='cinzel-text absolute bottom-5 w-full text-center md:text-3xl text-xl font-semibold text-white'>Desserts</h2>
                     </SwiperSlide>
-                    <SwiperSlide>
+                    <SwiperSlide className='relative'>
                         <img src={pImg5} alt="" />
+                        <h2 className='cinzel-text absolute bottom-5 w-full text-center md:text-3xl text-xl font-semibold text-white'>Salad</h2>
                     </SwiperSlide>
                 </Swiper>
             </div>
