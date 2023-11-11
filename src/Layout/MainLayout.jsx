@@ -1,4 +1,5 @@
 import { NavLink, Outlet } from "react-router-dom";
+import Footer from "../Shared/Footer/Footer";
 
 const MainLayout = () => {
 
@@ -47,6 +48,7 @@ const MainLayout = () => {
                     </div>
                     {/* Page content here */}
                     <Outlet></Outlet>
+                    <Footer></Footer>
                 </div>
                 <div className="drawer-side z-50">
                     <label htmlFor="my-drawer-3" aria-label="close sidebar" className="drawer-overlay"></label>
