@@ -27,7 +27,7 @@ const Testimonial = () => {
                 title={"Testimonials"}
             ></SessionTItle>
 
-            <div className="xl:w-[1280px] md:w-[80%] w-[90%] mx-auto lg:px-0 md:px-5 px-3 mt-12">
+            <div className="xl:max-w-7xl lg:max-w-5xl md:max-w-3xl sm:max-w-2xl max-w-xs mx-auto lg:px-0 md:px-5 px-3 mt-12">
                 <Swiper navigation={true}
                     centeredSlides={true}
                     autoplay={{
