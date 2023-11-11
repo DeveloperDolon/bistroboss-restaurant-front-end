@@ -10,11 +10,12 @@ const MenuSection = () => {
     useEffect(() => {
         axios.get("/menu.json")
         .then(res => {
-            const sliceData = res?.data?.length > 6 ? res?.data?.slice(0, 6) : res?.data;
+            const popularItems = res?.data?.filter(item => item.category === "popular")
+            const sliceData = popularItems?.length > 6 ? popularItems?.slice(0, 6) : popularItems;
             setMenu(sliceData);
         })
         .catch(err => console.error(err));
-    }, [])
+    }, []);
 
     return (
         <div className="md:my-28 my-20">
