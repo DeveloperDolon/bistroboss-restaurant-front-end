@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
 import SessionTItle from "../../../Component/SessionTItle";
-import axios from "axios";
 import '@smastrom/react-rating/style.css'
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { FaQuoteLeft } from 'react-icons/fa';
@@ -10,12 +9,15 @@ import 'swiper/css';
 import 'swiper/css/navigation';
 import { Autoplay, Navigation } from "swiper/modules";
 import { Rating } from "@smastrom/react-rating";
+import { axiosSecure } from "../../../Hooks/useAxiosSecure";
 
 const Testimonial = () => {
     const [reviews, setReviews] = useState([]);
     useEffect(() => {
-        axios("/reviews.json")
-            .then(res => setReviews(res.data))
+        axiosSecure.get("/api/v1/reviews")
+            .then(res => {
+                setReviews(res.data);
+            })
             .catch(err => console.error(err));
     }, []);
 
