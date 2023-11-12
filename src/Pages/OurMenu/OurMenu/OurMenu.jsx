@@ -1,22 +1,16 @@
-import { useEffect, useState } from "react";
+
 import BannerCover from "../../../Shared/BannerCover/BannerCover";
 import image from "../../../assets/menu/banner3.jpg";
-import { axiosSecure } from "../../../Hooks/useAxiosSecure";
 import TodaysOffer from "../Offers/TodaysOffer";
 import MenuSection from "../MenuSection/MenuSection";
 import bgDesserts from "../../../assets/menu/dessert-bg.jpeg";
 import bgPizza from "../../../assets/menu/pizza-bg.jpg";
 import bgSalads from "../../../assets/menu/salad-bg.jpg";
 import bgSoups from "../../../assets/menu/soup-bg.jpg";
+import useMenuData from "../../../Hooks/useMenuData";
 
 const Menus = () => {
-    const [menus, setMenus] = useState([]);
-    useEffect(() => {
-        axiosSecure.get("/api/v1/menus")
-            .then(res => {
-                setMenus(res.data);
-            }).catch(err => console.log(err.message));
-    }, []);
+   const {menus} = useMenuData();
 
     const offers = menus.filter(menu => menu.category === "offered");
     const salads = menus.filter(menu => menu.category === "salad");
