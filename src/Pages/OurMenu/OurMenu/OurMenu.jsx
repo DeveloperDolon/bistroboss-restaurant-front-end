@@ -3,6 +3,11 @@ import BannerCover from "../../../Shared/BannerCover/BannerCover";
 import image from "../../../assets/menu/banner3.jpg";
 import { axiosSecure } from "../../../Hooks/useAxiosSecure";
 import TodaysOffer from "../Offers/TodaysOffer";
+import MenuSection from "../MenuSection/MenuSection";
+import bgDesserts from "../../../assets/menu/dessert-bg.jpeg";
+import bgPizza from "../../../assets/menu/pizza-bg.jpg";
+import bgSalads from "../../../assets/menu/salad-bg.jpg";
+import bgSoups from "../../../assets/menu/soup-bg.jpg";
 
 const Menus = () => {
     const [menus, setMenus] = useState([]);
@@ -28,6 +33,35 @@ const Menus = () => {
             ></BannerCover>
 
             <TodaysOffer data={offers}></TodaysOffer>
+            <MenuSection
+            bgImg={bgDesserts}
+            title={"Desserts"}
+            description={"Lorem Ipsum has been the industry’s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book."}
+            menuItems={desserts}
+            ></MenuSection>
+            
+            <MenuSection
+            bgImg={bgPizza}
+            title={"Pizza"}
+            description={"Lorem Ipsum has been the industry’s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book."}
+            menuItems={pizzas}
+            ></MenuSection>
+            
+            <MenuSection
+            bgImg={bgSalads}
+            title={"Salads"}
+            description={"Lorem Ipsum has been the industry’s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book."}
+            menuItems={salads}
+            ></MenuSection>
+            
+            <MenuSection
+            bgImg={bgSoups}
+            title={"Soups"}
+            description={"Lorem Ipsum has been the industry’s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book."}
+            menuItems={soups}
+            ></MenuSection>
+
+            
         </div>
     );
 };
