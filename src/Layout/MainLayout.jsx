@@ -17,7 +17,7 @@ const MainLayout = () => {
             <NavLink className="hover:text-lime-300" to="/our-menu">Our Menu</NavLink>
         </li>
         <li>
-            <NavLink className="hover:text-lime-300" to="/our-shop">Our Shop</NavLink>
+            <NavLink className="hover:text-lime-300" to={`/our-shop/${"salad"}`}>Our Shop</NavLink>
         </li>
     </>
 

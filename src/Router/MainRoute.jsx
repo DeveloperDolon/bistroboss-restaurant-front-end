@@ -21,7 +21,7 @@ const MainRoute = createBrowserRouter([
                 element: <Menus></Menus>
             },
             {
-                path: "our-shop",
+                path: "our-shop/:category",
                 element: <OurShop></OurShop>
             }
         ]

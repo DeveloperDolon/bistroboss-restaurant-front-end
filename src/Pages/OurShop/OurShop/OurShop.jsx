@@ -1,13 +1,21 @@
 import { Tab, TabList, TabPanel, Tabs } from "react-tabs";
 import BannerCover from "../../../Shared/BannerCover/BannerCover";
 import shopBg from "../../../assets/shop/banner2.jpg";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import useMenuData from "../../../Hooks/useMenuData";
 import FoodItem from "../../../Shared/FoodItem/FoodItem";
+import { useParams } from "react-router-dom";
 const OurShop = () => {
     const [tabIndex, setTabIndex] = useState(0);
-    const { menus } = useMenuData();
+    const {category} = useParams();
+    const categorys = ["salad", "pizza", "soup", "dessert", "drinks"];
+    const indexOfCategory = categorys.indexOf(category);
+    
+    useEffect(() => {
+        setTabIndex(indexOfCategory);
+    }, []);
 
+    const { menus } = useMenuData();
     const salads = menus.filter(menu => menu.category === "salad");
     const soups = menus.filter(menu => menu.category === "soup");
     const pizzas = menus.filter(menu => menu.category === "pizza");

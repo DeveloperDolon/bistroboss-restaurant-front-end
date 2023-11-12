@@ -1,6 +1,11 @@
 import PropTypes from "prop-types";
 import MenuItem from "../../Home/Menu/MenuItem";
+import { Link } from "react-router-dom";
 const MenuSection = ({ bgImg, title, description, menuItems }) => {
+
+    const categoryText = menuItems[0]?.category;
+
+
     return (
         <div>
             <div style={{
@@ -19,7 +24,7 @@ const MenuSection = ({ bgImg, title, description, menuItems }) => {
             </div>
 
             <div className="text-center md:mt-20 mb-20">
-                <button className="btn bg-white border-x-0 border-t-0 border-black border-b-4">Order your favorite food</button>
+                <Link to={`/our-shop/${categoryText}`} className="btn bg-white border-x-0 border-t-0 border-black border-b-4">Order your favorite food</Link>
             </div>
         </div>
     );
