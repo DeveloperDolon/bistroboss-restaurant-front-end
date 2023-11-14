@@ -6,6 +6,7 @@ import { useEffect, useRef, useState } from 'react';
 import { FaFacebookF } from "react-icons/fa";
 import { FaGoogle } from "react-icons/fa";
 import { FaGithub } from "react-icons/fa";
+import { Link } from 'react-router-dom';
 
 const Login = () => {
     const [disable, setDisabled] = useState(true);
@@ -65,7 +66,7 @@ const Login = () => {
                     </form>
 
                     <div>
-                        <p className='md:text-base text-sm text-center'>New Here? <span className='font-semibold'>Create a New Account</span></p>
+                        <p className='md:text-base text-sm text-center'>New Here? <Link to="/register" className='font-semibold'>Create a New Account</Link></p>
 
                         <p className='font-bold md:text-base text-sm text-center my-3'>Or sing in with</p>
 
