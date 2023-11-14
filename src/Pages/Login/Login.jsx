@@ -2,18 +2,22 @@
 import { loadCaptchaEnginge, LoadCanvasTemplate, validateCaptcha } from 'react-simple-captcha';
 import LoginBg from "../../assets/others/authentication.png";
 import logINBanner from "../../assets/others/authentication2.png";
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
+import { FaFacebookF } from "react-icons/fa";
+import { FaGoogle } from "react-icons/fa";
+import { FaGithub } from "react-icons/fa";
 
 const Login = () => {
-    const [disable, setDisabled] = useState(false);
+    const [disable, setDisabled] = useState(true);
+    const captchaRef = useRef();
 
     useEffect(() => {
         loadCaptchaEnginge(6);
     }, [])
 
-    const handleValidateCaptcha = (e) => {
-        
-        const user_captcha_value = e.target.value;
+    const handleValidateCaptcha = () => {
+
+        const user_captcha_value = captchaRef.current.value;
         if (validateCaptcha(user_captcha_value)) {
             setDisabled(false);
         }
@@ -24,12 +28,12 @@ const Login = () => {
 
     return (
         <div
-        className="min-h-screen flex justify-center items-center"
-        style={{
-            background: `url("${LoginBg}") no-repeat center center`,
-            backgroundSize: "cover",
-        }}>
-            <div className="max-w-[2000px] mx-auto md:p-20 p-11 shadow-2xl grid md:grid-cols-2 grid-cols-1 gap-6">
+            className="min-h-screen flex justify-center items-center"
+            style={{
+                background: `url("${LoginBg}") no-repeat center center`,
+                backgroundSize: "cover",
+            }}>
+            <div className="max-w-[2000px] mx-auto md:p-20 sm:p-11 p-3 shadow-2xl grid md:grid-cols-2 grid-cols-1 gap-6 items-center md:my-20">
                 <div>
                     <img src={logINBanner} alt="" />
                 </div>
@@ -41,17 +45,36 @@ const Login = () => {
                         <label className="text-lg font-semibold" htmlFor="email">Email
                             <input className="text-base font-normal w-full py-5 pl-7 rounded-md mt-3" type="email" required placeholder="Type email" />
                         </label>
-                        
+
                         <label className="text-lg font-semibold" htmlFor="email">Password
                             <input className="text-base font-normal w-full py-5 pl-7 rounded-md mt-3" type="password" required placeholder="Type name" />
                         </label>
                         <div className="form-control">
-                                <label>
-                                    <LoadCanvasTemplate></LoadCanvasTemplate>
-                                </label>
-                                <input onBlur={handleValidateCaptcha} type="text" name="captcha" placeholder="Type the captcha above" className="text-base font-normal w-full py-5 pl-7 rounded-md mt-4" />
+                            <label>
+                                <LoadCanvasTemplate></LoadCanvasTemplate>
+                            </label>
+                            <div className='flex gap-4 justify-between items-center'>
+                                <input ref={captchaRef} type="text" name="captcha" placeholder="Type the captcha above" className="text-base font-normal w-full py-5 pl-7 rounded-md mt-4" />
+                                <div className='flex items-center'>
+                                    <span onClick={handleValidateCaptcha} className='btn bg-red-400 text-white btn-sm whitespace-nowrap hover:text-black text-xs'>Submit Captcha</span>
+                                </div>
                             </div>
+                        </div>
+
+                        <input className='w-full rounded-md bg-[#D1A054B2] text-white block mb-16 py-5 font-bold md:text-lg text-base cursor-pointer disabled:bg-gray-300 disabled:text-gray-200 disabled:cursor-not-allowed' disabled={disable} type="submit" value="Sign In" />
                     </form>
+
+                    <div>
+                        <p className='md:text-base text-sm text-center'>New Here? <span className='font-semibold'>Create a New Account</span></p>
+
+                        <p className='font-bold md:text-base text-sm text-center my-3'>Or sing in with</p>
+
+                        <div className='flex justify-center gap-16 pt-2'>
+                            <button className='text-xl rounded-full  outline-2 outline outline-offset-8'><FaFacebookF /></button>
+                            <button className='text-xl rounded-full  outline-2 outline outline-offset-8'><FaGoogle /></button>
+                            <button className='text-xl rounded-full  outline-2 outline outline-offset-8'><FaGithub /></button>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
