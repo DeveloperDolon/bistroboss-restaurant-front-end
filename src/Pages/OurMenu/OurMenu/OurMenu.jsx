@@ -10,7 +10,7 @@ import bgSoups from "../../../assets/menu/soup-bg.jpg";
 import useMenuData from "../../../Hooks/useMenuData";
 
 const Menus = () => {
-   const {menus} = useMenuData();
+    const {menus} = useMenuData();
 
     const offers = menus.filter(menu => menu.category === "offered");
     const salads = menus.filter(menu => menu.category === "salad");

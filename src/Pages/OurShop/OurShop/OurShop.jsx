@@ -5,6 +5,8 @@ import { useEffect, useState } from "react";
 import useMenuData from "../../../Hooks/useMenuData";
 import FoodItem from "../../../Shared/FoodItem/FoodItem";
 import { useParams } from "react-router-dom";
+
+
 const OurShop = () => {
     const [tabIndex, setTabIndex] = useState(0);
     const {category} = useParams();
@@ -47,14 +49,14 @@ const OurShop = () => {
 
                     <div className="md:mt-10 mt-6">
                         <TabPanel>
-                            <div className="grid grid-cols-3 gap-8 pb-20">
+                            <div className="grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1  gap-8 pb-20">
                                 {
                                     salads?.map(menu => <FoodItem key={menu._id} data={menu}></FoodItem>)
                                 }
                             </div>
                         </TabPanel>
                         <TabPanel>
-                            <div className="grid grid-cols-3 gap-8 pb-20">
+                            <div className="grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1  gap-8 pb-20">
                                 {
                                     pizzas?.map(menu => <FoodItem key={menu._id} data={menu}></FoodItem>)
                                 }
@@ -62,21 +64,21 @@ const OurShop = () => {
                         </TabPanel>
                         
                         <TabPanel>
-                            <div className="grid grid-cols-3 gap-8 pb-20">
+                            <div className="grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1  gap-8 pb-20">
                                 {
                                     soups?.map(menu => <FoodItem key={menu._id} data={menu}></FoodItem>)
                                 }
                             </div>
                         </TabPanel>
                         <TabPanel>
-                            <div className="grid grid-cols-3 gap-8 pb-20">
+                            <div className="grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1  gap-8 pb-20">
                                 {
                                     desserts?.map(menu => <FoodItem key={menu._id} data={menu}></FoodItem>)
                                 }
                             </div>
                         </TabPanel>
                         <TabPanel>
-                            <div className="grid grid-cols-3 gap-8 pb-20">
+                            <div className="grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1  gap-8 pb-20">
                                 {
                                     drinks?.map(menu => <FoodItem key={menu._id} data={menu}></FoodItem>)
                                 }
