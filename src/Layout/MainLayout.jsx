@@ -4,10 +4,11 @@ import { useContext } from "react";
 import { AuthContext } from "../Provider/AuthProvider";
 import defaultUserImg from "../assets/others/profile.png";
 import cartImg from "../assets/icon/151-1511569_cart-notifications-free-shopping-cart-favicon-hd-png-removebg-preview.png"
+import toast from "react-hot-toast";
 
 const MainLayout = () => {
 
-    const { user } = useContext(AuthContext);
+    const { user, logOut } = useContext(AuthContext);
 
     const navItems = <>
         <li>
@@ -31,6 +32,35 @@ const MainLayout = () => {
             }
         </li>
     </>
+
+    const handleLogOut = () => {
+        logOut()
+        .then(() => {
+            toast.success('User logged out Successful!.', {
+                style: {
+                    border: '1px solid black',
+                    padding: '16px',
+                    color: 'black',
+                },
+                iconTheme: {
+                    primary: '#D1A054B2',
+                    secondary: '#FFFAEE',
+                },
+            });
+        }).catch(err => {
+            toast.error(err.message, {
+                style: {
+                    border: '1px solid black',
+                    padding: '16px',
+                    color: 'black',
+                },
+                iconTheme: {
+                    primary: '#D1A054B2',
+                    secondary: '#FFFAEE',
+                },
+            });
+        })
+    }
 
     return (
         <div>
@@ -59,7 +89,7 @@ const MainLayout = () => {
                             {
                                 user && <div className="flex gap-3">
                                     <NavLink><img className="md:w-12" src={cartImg} alt="" /></NavLink>
-                                    <button>Log Out</button>
+                                    <button className="uppercase text-sm" onClick={handleLogOut}>Log Out</button>
                                     <img className="md:w-10 w-8 rounded-full" src={user?.photoURL ? user?.photoURL : defaultUserImg} title={user?.displayName || "User Image"} alt={user?.displayName || "Users Image"} />
                                 </div>
                             }

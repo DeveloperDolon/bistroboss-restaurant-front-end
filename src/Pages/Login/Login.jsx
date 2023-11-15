@@ -3,13 +3,12 @@ import { loadCaptchaEnginge, LoadCanvasTemplate, validateCaptcha } from 'react-s
 import LoginBg from "../../assets/others/authentication.png";
 import logINBanner from "../../assets/others/authentication2.png";
 import { useEffect, useRef, useState } from 'react';
-import { FaFacebookF } from "react-icons/fa";
-import { FaGoogle } from "react-icons/fa";
-import { FaGithub } from "react-icons/fa";
+
 import { Link } from 'react-router-dom';
 import toast from 'react-hot-toast';
 import { useContext } from 'react';
 import { AuthContext } from '../../Provider/AuthProvider';
+import SocialLoginBtns from '../../Component/SocialLoginBtn/SocialLoginBtns';
 
 const Login = () => {
     const [disable, setDisabled] = useState(true);
@@ -119,11 +118,7 @@ const Login = () => {
 
                         <p className='font-bold md:text-base text-sm text-center my-3'>Or sing in with</p>
 
-                        <div className='flex justify-center gap-16 pt-2'>
-                            <button className='text-xl rounded-full  outline-2 outline outline-offset-8'><FaFacebookF /></button>
-                            <button className='text-xl rounded-full  outline-2 outline outline-offset-8'><FaGoogle /></button>
-                            <button className='text-xl rounded-full  outline-2 outline outline-offset-8'><FaGithub /></button>
-                        </div>
+                        <SocialLoginBtns></SocialLoginBtns>
                     </div>
                 </div>
             </div>
