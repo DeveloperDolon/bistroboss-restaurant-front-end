@@ -7,10 +7,14 @@ import { FaFacebookF } from "react-icons/fa";
 import { FaGoogle } from "react-icons/fa";
 import { FaGithub } from "react-icons/fa";
 import { Link } from 'react-router-dom';
+import toast from 'react-hot-toast';
+import { useContext } from 'react';
+import { AuthContext } from '../../Provider/AuthProvider';
 
 const Login = () => {
     const [disable, setDisabled] = useState(true);
     const captchaRef = useRef();
+    const {signIn} = useContext(AuthContext);
 
     useEffect(() => {
         loadCaptchaEnginge(6);
@@ -25,6 +29,51 @@ const Login = () => {
         else {
             setDisabled(true)
         }
+    }
+
+    const handleLogin = (e) => {
+        e.preventDefault();
+
+        const loginId = toast.loading('Login user...', {
+            style: {
+                border: '1px solid black',
+                padding: '16px',
+                color: 'black',
+            },
+            iconTheme: {
+                primary: '#D1A054B2',
+                secondary: '#FFFAEE',
+            },
+        });
+        const email = e.target.email.value;
+        const password = e.target.password.value;
+
+        signIn(email, password)
+        .then(() => {
+            toast.success('User logged in Successful!.', {id: loginId}, {
+                style: {
+                    border: '1px solid black',
+                    padding: '16px',
+                    color: 'black',
+                },
+                iconTheme: {
+                    primary: '#D1A054B2',
+                    secondary: '#FFFAEE',
+                },
+            });
+        }).catch(err => {
+            toast.error(err.message, {id: loginId}, {
+                style: {
+                    border: '1px solid black',
+                    padding: '16px',
+                    color: '#f87171',
+                },
+                iconTheme: {
+                    primary: '#f87171',
+                    secondary: '#FFFAEE',
+                },
+            });
+        })
     }
 
     return (
@@ -42,13 +91,13 @@ const Login = () => {
                 <div className="">
                     <h1 className="md:text-4xl text-2xl font-bold text-center">Login</h1>
 
-                    <form className="grid grid-cols-1 gap-6 mt-8">
+                    <form onSubmit={handleLogin} className="grid grid-cols-1 gap-6 mt-8">
                         <label className="text-lg font-semibold" htmlFor="email">Email
-                            <input className="text-base font-normal w-full py-5 pl-7 rounded-md mt-3" type="email" required placeholder="Type email" />
+                            <input className="text-base font-normal w-full py-5 pl-7 rounded-md mt-3" type="email" name='email' required placeholder="Type email" />
                         </label>
 
                         <label className="text-lg font-semibold" htmlFor="email">Password
-                            <input className="text-base font-normal w-full py-5 pl-7 rounded-md mt-3" type="password" required placeholder="Type name" />
+                            <input className="text-base font-normal w-full py-5 pl-7 rounded-md mt-3" name='password' type="password" required placeholder="Type password" />
                         </label>
                         <div className="form-control">
                             <label>

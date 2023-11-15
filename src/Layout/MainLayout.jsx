@@ -1,7 +1,13 @@
 import { NavLink, Outlet } from "react-router-dom";
 import Footer from "../Shared/Footer/Footer";
+import { useContext } from "react";
+import { AuthContext } from "../Provider/AuthProvider";
+import defaultUserImg from "../assets/others/profile.png";
+import cartImg from "../assets/icon/151-1511569_cart-notifications-free-shopping-cart-favicon-hd-png-removebg-preview.png"
 
 const MainLayout = () => {
+
+    const { user } = useContext(AuthContext);
 
     const navItems = <>
         <li>
@@ -20,7 +26,9 @@ const MainLayout = () => {
             <NavLink className="hover:text-lime-300" to={`/our-shop/${"salad"}`}>Our Shop</NavLink>
         </li>
         <li>
-            <NavLink className="hover:text-lime-300" to="/login">Login</NavLink>
+            {
+                !user && <NavLink className="hover:text-lime-300" to="/login">Login</NavLink>
+            }
         </li>
     </>
 
@@ -47,6 +55,15 @@ const MainLayout = () => {
                                     {navItems}
                                 </ul>
                             </div>
+
+                            {
+                                user && <div className="flex gap-3">
+                                    <NavLink><img className="md:w-12" src={cartImg} alt="" /></NavLink>
+                                    <button>Log Out</button>
+                                    <img className="md:w-10 w-8 rounded-full" src={user?.photoURL ? user?.photoURL : defaultUserImg} title={user?.displayName || "User Image"} alt={user?.displayName || "Users Image"} />
+                                </div>
+                            }
+
                         </div>
                     </div>
                     {/* Page content here */}
@@ -57,7 +74,7 @@ const MainLayout = () => {
                     <label htmlFor="my-drawer-3" aria-label="close sidebar" className="drawer-overlay"></label>
                     <ul className="menu p-4 w-80 min-h-full bg-base-200 font-bold uppercase">
                         {/* Sidebar content here */}
-                       {navItems}
+                        {navItems}
                     </ul>
                 </div>
             </div>

@@ -12,8 +12,8 @@ import toast from "react-hot-toast";
 
 
 const Register = () => {
-    const { register, handleSubmit, watch, formState: { errors } } = useForm();
-    const { createUser } = useContext(AuthContext);
+    const { register, handleSubmit, formState: { errors } } = useForm();
+    const { createUser, updateUserProfile } = useContext(AuthContext);
 
     const onSubmit = data => {
 
@@ -31,17 +31,20 @@ const Register = () => {
 
         createUser(data.email, data.password)
             .then(() => {
-                toast.success('Look at my styles.', {id: registerId}, {
-                    style: {
-                        border: '1px solid black',
-                        padding: '16px',
-                        color: 'black',
-                    },
-                    iconTheme: {
-                        primary: '#D1A054B2',
-                        secondary: '#FFFAEE',
-                    },
-                });
+                updateUserProfile(data.name)
+                .then(() => {
+                    toast.success('Registered Successful!.', {id: registerId}, {
+                        style: {
+                            border: '1px solid black',
+                            padding: '16px',
+                            color: 'black',
+                        },
+                        iconTheme: {
+                            primary: '#D1A054B2',
+                            secondary: '#FFFAEE',
+                        },
+                    });
+                }).catch(err => console.log(err));
             }).catch(err => {
                 toast.error(err.message, {id: registerId}, {
                     style: {
