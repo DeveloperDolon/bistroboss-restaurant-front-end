@@ -8,11 +8,14 @@ import { AuthContext } from "../Provider/AuthProvider";
 const useAccessCart = () => {
     const {user} = useContext(AuthContext);
 
+
+
     return useQuery({
         queryKey: ["cart"],
         queryFn : async () => {
-            const cartData = await axiosSecure.get(`/api/v1/cart?userId=${user.uid}`);
-            return cartData?.data;
+            const cartData = await axiosSecure.get(`/api/v1/cart?userId=${user?.uid}`);
+            const datas = await cartData.data;
+            return datas;
         }
     })
 };
