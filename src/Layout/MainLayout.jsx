@@ -5,11 +5,13 @@ import { AuthContext } from "../Provider/AuthProvider";
 import defaultUserImg from "../assets/others/profile.png";
 import cartImg from "../assets/icon/151-1511569_cart-notifications-free-shopping-cart-favicon-hd-png-removebg-preview.png"
 import toast from "react-hot-toast";
+import useAccessCart from "../Hooks/useAccessCart";
 
 const MainLayout = () => {
 
+    const {data} = useAccessCart();
     const { user, logOut } = useContext(AuthContext);
-
+    
     const navItems = <>
         <li>
             <NavLink className="hover:text-lime-300" to="/">Home</NavLink>
@@ -88,7 +90,12 @@ const MainLayout = () => {
 
                             {
                                 user && <div className="flex gap-3">
-                                    <NavLink><img className="md:w-12" src={cartImg} alt="" /></NavLink>
+                                    <NavLink className="relative" to={"/cart"}>
+                                        <img className="md:w-12 w-10" src={cartImg} alt="" />
+                                        <span 
+                                        className="md:text-sm text-xs bg-red-500 text-black absolute px-2 rounded-full bottom-0 right-[1px]"
+                                        >{data?.length || 0}</span>
+                                    </NavLink>
                                     <button className="uppercase text-sm" onClick={handleLogOut}>Log Out</button>
                                     <img className="md:w-10 w-8 rounded-full" src={user?.photoURL ? user?.photoURL : defaultUserImg} title={user?.displayName || "User Image"} alt={user?.displayName || "Users Image"} />
                                 </div>

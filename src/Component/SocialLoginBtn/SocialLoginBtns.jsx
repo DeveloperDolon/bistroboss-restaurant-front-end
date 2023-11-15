@@ -5,11 +5,16 @@ import { FaGoogle } from "react-icons/fa";
 import { FaGithub } from "react-icons/fa";
 import { AuthContext } from "../../Provider/AuthProvider";
 import toast from "react-hot-toast";
+import { useLocation, useNavigate } from "react-router-dom";
 
 
 const SocialLoginBtns = () => {
 
     const {signInWithGoogle} = useContext(AuthContext);
+    const location = useLocation();
+    const navigate = useNavigate();
+
+    console.log(location.state)
 
     const handleGoogleLogin = () => {
 
@@ -38,6 +43,7 @@ const SocialLoginBtns = () => {
                     secondary: '#FFFAEE',
                 },
             });
+            navigate(location?.state || "/");
         }).catch(err => {
             toast.error(err.message, {id: googleId}, {
                 style: {

@@ -4,7 +4,7 @@ import LoginBg from "../../assets/others/authentication.png";
 import logINBanner from "../../assets/others/authentication2.png";
 import { useEffect, useRef, useState } from 'react';
 
-import { Link } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import toast from 'react-hot-toast';
 import { useContext } from 'react';
 import { AuthContext } from '../../Provider/AuthProvider';
@@ -14,6 +14,8 @@ const Login = () => {
     const [disable, setDisabled] = useState(true);
     const captchaRef = useRef();
     const {signIn} = useContext(AuthContext);
+    const location = useLocation();
+    const navigate = useNavigate();
 
     useEffect(() => {
         loadCaptchaEnginge(6);
@@ -60,6 +62,7 @@ const Login = () => {
                     secondary: '#FFFAEE',
                 },
             });
+            navigate(location.state || "/");
         }).catch(err => {
             toast.error(err.message, {id: loginId}, {
                 style: {

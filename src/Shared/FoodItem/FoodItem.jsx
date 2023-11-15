@@ -1,6 +1,22 @@
+
 import PropTypes from "prop-types";
+import useAddCartProduct from "../../Hooks/useAddCartProduct";
+import { useContext } from "react";
+import { AuthContext } from "../../Provider/AuthProvider";
+
 
 const FoodItem = ({ data }) => {
+    const {user} = useContext(AuthContext);
+    
+    const {mutate: addToCart} = useAddCartProduct();
+
+    const handleAddToCart = () => {
+        const {_id: product_id, name: product_name, image: product_image, price: product_price} = data;
+        const userId = user.uid;
+        const infos = {product_id, product_name, product_image, product_price, userId};
+        addToCart(infos);
+    };
+
     return (
         <div className="grid grid-cols-1 rounded-md overflow-hidden">
             <div>
@@ -12,7 +28,7 @@ const FoodItem = ({ data }) => {
                 <p className="mt-2">{data.recipe}</p>
 
                 <div className="card-actions pt-5 justify-center">
-                    <button className="btn text-[#BB8506] border-x-0 border-t-0  hover:bg-black hover:border-b-0 border-b-4 border-[#BB8506]">Add To Cart</button>
+                    <button onClick={handleAddToCart} className="btn text-[#BB8506] border-x-0 border-t-0  hover:bg-black hover:border-b-0 border-b-4 border-[#BB8506]">Add To Cart</button>
                 </div>
 
             </div>

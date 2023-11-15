@@ -9,6 +9,8 @@ import OurShop from "../Pages/OurShop/OurShop/OurShop";
 import ContactUs from "../Pages/ContactUs/ContactUs/ContactUs";
 import Login from "../Pages/Login/Login";
 import Register from "../Pages/Register/Register";
+import PrivateRoute from "./PrivateRoute";
+import Cart from "../Pages/Cart/Cart";
 
 const MainRoute = createBrowserRouter([
     {
@@ -30,6 +32,10 @@ const MainRoute = createBrowserRouter([
             {
                 path: "contact-us",
                 element: <ContactUs></ContactUs>
+            },
+            {
+                path: "cart",
+                element: <PrivateRoute><Cart>Hello world</Cart></PrivateRoute>
             }
         ]
     },

@@ -5,7 +5,7 @@ import logINBanner from "../../assets/others/authentication2.png";
 import { FaFacebookF } from "react-icons/fa";
 import { FaGoogle } from "react-icons/fa";
 import { FaGithub } from "react-icons/fa";
-import { Link } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { AuthContext } from "../../Provider/AuthProvider";
 import { useForm } from "react-hook-form";
 import toast from "react-hot-toast";
@@ -14,6 +14,9 @@ import toast from "react-hot-toast";
 const Register = () => {
     const { register, handleSubmit, formState: { errors } } = useForm();
     const { createUser, updateUserProfile } = useContext(AuthContext);
+    const navigate = useNavigate();
+    const location = useLocation();
+
 
     const onSubmit = data => {
 
@@ -44,6 +47,7 @@ const Register = () => {
                             secondary: '#FFFAEE',
                         },
                     });
+                    navigate(location.state || "/");
                 }).catch(err => console.log(err));
             }).catch(err => {
                 toast.error(err.message, {id: registerId}, {
