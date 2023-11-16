@@ -3,7 +3,7 @@ import { axiosSecure } from "./useAxiosSecure";
 import toast from "react-hot-toast";
 import useAccessCart from "./useAccessCart";
 
-const addToCart = (product) => {
+const addToCart = async (product) => {
     return axiosSecure.post("/api/v1/carts", product);
 }
 
