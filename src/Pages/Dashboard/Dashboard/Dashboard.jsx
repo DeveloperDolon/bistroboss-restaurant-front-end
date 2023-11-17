@@ -21,7 +21,7 @@ const Dashboard = () => {
         <li className="cinzel-text font-bold md:text-lg text-sm">
             <NavLink style={{fontFamily: "'Cinzel', serif"}} className={({ isActive, isPending }) =>
                 isPending ? "pending" : isActive ? "text-white" : ""
-            } to={"/dashboard/pay-history"}><FaWallet className="md:text-2xl text-xl"></FaWallet>Payment History</NavLink>
+            } to={"/dashboard/payment-history"}><FaWallet className="md:text-2xl text-xl"></FaWallet>Payment History</NavLink>
         </li>
         <li className="cinzel-text font-bold md:text-lg text-sm">
             <NavLink style={{fontFamily: "'Cinzel', serif"}} className={({ isActive, isPending }) =>

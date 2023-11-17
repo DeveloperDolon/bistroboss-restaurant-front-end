@@ -14,6 +14,9 @@ import Cart from "../Pages/Cart/Cart";
 import Dashboard from "../Pages/Dashboard/Dashboard/Dashboard";
 import UserHome from "../Pages/Dashboard/Pages/UserHome/UserHome";
 import Reservation from "../Pages/Dashboard/Pages/UserReservation/Reservation";
+import UserPayment from "../Pages/Dashboard/Pages/UserReservation/UserPayment";
+import PaymentHistory from "../Pages/Dashboard/Pages/PaymentHistory/PaymentHistory";
+import ReservationHome from "../Pages/Dashboard/Pages/UserReservation/ReservationHome";
 
 const MainRoute = createBrowserRouter([
     {
@@ -46,13 +49,28 @@ const MainRoute = createBrowserRouter([
         path: "dashboard",
         element: <PrivateRoute><Dashboard></Dashboard></PrivateRoute>,
         children: [
+            { index: true, element:<h3>Hello world</h3> },
             {
                 path: "/dashboard/home",
                 element: <PrivateRoute><UserHome></UserHome></PrivateRoute>
             },
             {
-                path: "/dashboard/reservation",
-                element: <PrivateRoute><Reservation></Reservation></PrivateRoute>
+                path: "/dashboard/reservation/",
+                element: <PrivateRoute><ReservationHome></ReservationHome></PrivateRoute>,
+                children: [
+                    {
+                        path: "/dashboard/reservation/",
+                        element: <PrivateRoute><Reservation></Reservation></PrivateRoute>,
+                    },
+                    {
+                        path: "/dashboard/reservation/user-payment",
+                        element: <PrivateRoute><UserPayment></UserPayment></PrivateRoute>
+                    }
+                ]
+            },
+            {
+                path: "/dashboard/payment-history",
+                element: <PrivateRoute><PaymentHistory></PaymentHistory></PrivateRoute>
             }
         ]
     },

@@ -3,9 +3,15 @@ import SessionTItle from "../../../../Component/SessionTItle";
 import { TbPhoneCall } from "react-icons/tb";
 import { FaLocationDot } from "react-icons/fa6";
 import { IoTime } from "react-icons/io5";
+import { useNavigate } from "react-router-dom";
 
 
 const Reservation = () => {
+    const navigate = useNavigate();
+    const handleClick = () => {
+        navigate("/dashboard/reservation/user-payment");
+    }
+
     return (
         <div className="md:py-10 py-5 md:px-7 px-5">
             <SessionTItle
@@ -42,6 +48,7 @@ const Reservation = () => {
 
                 <div className="text-center flex justify-center md:mt-10 mt-6">
                     <button
+                        onClick={handleClick}
                         style={{
                             background: "linear-gradient(90deg, #835D23 0%, #B58130 100%)"
                         }}
