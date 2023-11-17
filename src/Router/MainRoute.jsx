@@ -12,6 +12,7 @@ import Register from "../Pages/Register/Register";
 import PrivateRoute from "./PrivateRoute";
 import Cart from "../Pages/Cart/Cart";
 import Dashboard from "../Pages/Dashboard/Dashboard/Dashboard";
+import UserHome from "../Pages/Dashboard/Pages/UserHome/UserHome";
 
 const MainRoute = createBrowserRouter([
     {
@@ -46,7 +47,7 @@ const MainRoute = createBrowserRouter([
         children: [
             {
                 path: "/dashboard/home",
-                element: <PrivateRoute><h1>Hello from dashboard</h1></PrivateRoute>
+                element: <PrivateRoute><UserHome></UserHome></PrivateRoute>
             }
         ]
     },
