@@ -13,6 +13,7 @@ import PrivateRoute from "./PrivateRoute";
 import Cart from "../Pages/Cart/Cart";
 import Dashboard from "../Pages/Dashboard/Dashboard/Dashboard";
 import UserHome from "../Pages/Dashboard/Pages/UserHome/UserHome";
+import Reservation from "../Pages/Dashboard/Pages/UserReservation/Reservation";
 
 const MainRoute = createBrowserRouter([
     {
@@ -48,6 +49,10 @@ const MainRoute = createBrowserRouter([
             {
                 path: "/dashboard/home",
                 element: <PrivateRoute><UserHome></UserHome></PrivateRoute>
+            },
+            {
+                path: "/dashboard/reservation",
+                element: <PrivateRoute><Reservation></Reservation></PrivateRoute>
             }
         ]
     },
