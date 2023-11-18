@@ -20,6 +20,7 @@ import ReservationHome from "../Pages/Dashboard/Pages/UserReservation/Reservatio
 import UserCart from "../Pages/Dashboard/Pages/Cart/UserCart";
 import UserReview from "../Pages/Dashboard/Pages/Review/UserReview";
 import UserBookings from "../Pages/Dashboard/Bookings/UserBookings";
+import ErrorPage from "../Pages/Error/ErrorPage";
 
 const MainRoute = createBrowserRouter([
     {
@@ -96,6 +97,10 @@ const MainRoute = createBrowserRouter([
     {
         path: "register",
         element: <Register></Register>
+    },
+    {
+        path: "/*",
+        element: <ErrorPage></ErrorPage>
     }
 ])
 
