@@ -9,12 +9,12 @@ import 'swiper/css';
 import 'swiper/css/navigation';
 import { Autoplay, Navigation } from "swiper/modules";
 import { Rating } from "@smastrom/react-rating";
-import { axiosSecure } from "../../../Hooks/useAxiosSecure";
+import { axiosPublic } from "../../../Hooks/useAxiosPublic";
 
 const Testimonial = () => {
     const [reviews, setReviews] = useState([]);
     useEffect(() => {
-        axiosSecure.get("/api/v1/reviews")
+        axiosPublic.get("/api/v1/reviews")
             .then(res => {
                 setReviews(res.data);
             })

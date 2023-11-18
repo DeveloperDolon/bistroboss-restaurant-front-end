@@ -12,6 +12,7 @@ import {
     updateProfile,
 } from 'firebase/auth';
 import app from "../firebase/firebase.config";
+import useAxiosSecure from "../Hooks/useAxiosSecure";
 
 
 export const AuthContext = createContext();
@@ -21,7 +22,8 @@ const AuthProvider = ({ children }) => {
     const auth = getAuth(app);
     const [user, setUser] = useState(null);
     const [loading, setLoading] = useState(true);
-    const isAdmin = true;
+    const [isAdmin, setIsAdmin] = useState(false);
+    const axiosSecure = useAxiosSecure();
 
     const createUser = (email, password) => {
         setLoading(true)
@@ -59,7 +61,20 @@ const AuthProvider = ({ children }) => {
     useEffect(() => {
         const unsubscribe = onAuthStateChanged(auth, currentUser => {
             setUser(currentUser)
-            console.log('CurrentUser-->', currentUser)
+            
+            if(currentUser) {
+                console.log(currentUser)
+                axiosSecure.get(`/api/v1/user?email=${currentUser.email}`)
+                .then(res => {
+                    if(res?.data?.role === "Admin") {
+                        setIsAdmin(true);
+                        return;
+                    }
+                    setIsAdmin(false);
+                })
+                .catch(err => console.log(err.message))
+            }
+
             setLoading(false)
         })
         return () => {

@@ -3,18 +3,25 @@ import PropTypes from "prop-types";
 import useAddCartProduct from "../../Hooks/useAddCartProduct";
 import { useContext } from "react";
 import { AuthContext } from "../../Provider/AuthProvider";
+import { useNavigate } from "react-router-dom";
 
 
 const FoodItem = ({ data }) => {
     const {user} = useContext(AuthContext);
-    
+    const navigate = useNavigate();
     const {mutate: addToCart} = useAddCartProduct();
 
     const handleAddToCart = () => {
-        const {_id: product_id, name: product_name, image: product_image, price: product_price} = data;
-        const userId = user.uid;
-        const infos = {product_id, product_name, product_image, product_price, userId};
-        addToCart(infos);
+        if(user) {
+            const {_id: product_id, name: product_name, image: product_image, price: product_price} = data;
+            const userEmail = user?.email;
+            const infos = {product_id, product_name, product_image, product_price, userEmail};
+            addToCart(infos);
+            return;
+        }
+
+        navigate("/login");
+
     };
 
     return (

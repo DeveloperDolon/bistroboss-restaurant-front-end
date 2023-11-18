@@ -9,11 +9,13 @@ import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { AuthContext } from "../../Provider/AuthProvider";
 import { useForm } from "react-hook-form";
 import toast from "react-hot-toast";
+import useAxiosSecure from "../../Hooks/useAxiosSecure";
 
 
 const Register = () => {
     const { register, handleSubmit, formState: { errors } } = useForm();
     const { createUser, updateUserProfile } = useContext(AuthContext);
+    const axiosSecure = useAxiosSecure();
     const navigate = useNavigate();
     const location = useLocation();
 
@@ -36,6 +38,14 @@ const Register = () => {
             .then(() => {
                 updateUserProfile(data.name)
                 .then(() => {
+                    const userInfo = {
+                        email : data.email,
+                        name: data.name,
+                        role: "User"
+                    }
+                    axiosSecure.post("/api/v1/users", userInfo)
+                    .then().catch(err => console.log(err.message));
+
                     toast.success('Registered Successful!.', {id: registerId}, {
                         style: {
                             border: '1px solid black',

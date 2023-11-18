@@ -11,6 +11,7 @@ const Dashboard = () => {
 
     const {isAdmin} = useContext(AuthContext);
 
+    
     const adminBars = <>
         <li className="cinzel-text font-bold md:text-lg text-sm">
             <NavLink style={{fontFamily: "'Cinzel', serif"}} className={({ isActive, isPending }) =>

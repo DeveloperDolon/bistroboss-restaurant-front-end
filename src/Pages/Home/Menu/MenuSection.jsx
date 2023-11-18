@@ -1,14 +1,14 @@
 import { useEffect, useState } from "react";
 import SessionTItle from "../../../Component/SessionTItle";
 import MenuItem from "./MenuItem";
-import { axiosSecure } from "../../../Hooks/useAxiosSecure";
+import { axiosPublic } from "../../../Hooks/useAxiosPublic";
 
 const MenuSection = () => {
 
     const [menu, setMenu] = useState([]);
 
     useEffect(() => {
-        axiosSecure.get("/api/v1/menus")
+        axiosPublic.get("/api/v1/menus")
         .then(res => {
             const popularItems = res?.data?.filter(item => item.category === "popular")
             const sliceData = popularItems?.length > 6 ? popularItems?.slice(0, 6) : popularItems;

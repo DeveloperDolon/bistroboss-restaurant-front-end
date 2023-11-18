@@ -2,6 +2,7 @@ import { useContext } from "react";
 import { FaCalendar, FaCartArrowDown, FaPhone, FaStar, FaWallet } from "react-icons/fa";
 import { FaPeopleGroup } from "react-icons/fa6";
 import { AuthContext } from "../../../../Provider/AuthProvider";
+import defaultUserImg from "../../../../assets/others/profile.png";
 
 const UserHome = () => {
 
@@ -54,7 +55,7 @@ const UserHome = () => {
             <div className="grid md:grid-cols-2 grid-cols-1 mt-28 rounded-md">
                 <div className="bg-[#FFEDD5] border-r border-[#D1A054] flex justify-center items-center py-16 flex-col px-20 rounded-l-md">
                     <div className="w-full">
-                        <img src={user?.photoURL} className="border-4 mx-auto w-[40%] border-[#D1A054] rounded-full" alt="" />
+                        <img src={user?.photoURL ? user?.photoURL : defaultUserImg} className="border-4 mx-auto w-[40%] border-[#D1A054] rounded-full" alt="" />
                     </div>
 
                     <h1 className="md:text-2xl text-lg font-bold cinzel-text mt-5">{user?.displayName}</h1>

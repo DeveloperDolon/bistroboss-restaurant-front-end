@@ -23,6 +23,7 @@ import UserBookings from "../Pages/Dashboard/Bookings/UserBookings";
 import ErrorPage from "../Pages/Error/ErrorPage";
 import AdminHome from "../Pages/Dashboard/AdminPage/AdminHome/AdminHome";
 import AddItems from "../Pages/Dashboard/AdminPage/AddItems/AddItems";
+import AdminRoute from "./AdminRoute";
 
 const MainRoute = createBrowserRouter([
     {
@@ -63,9 +64,9 @@ const MainRoute = createBrowserRouter([
             },
             {
                 path: "/dashboard/admin-home",
-                element: <PrivateRoute>
+                element: <AdminRoute>
                     <AdminHome></AdminHome>
-                </PrivateRoute>
+                </AdminRoute>
             },
             {
                 path: "/dashboard/reservation/",
@@ -99,7 +100,7 @@ const MainRoute = createBrowserRouter([
             },
             {
                 path: "/dashboard/admin-addItems",
-                element: <PrivateRoute><AddItems></AddItems></PrivateRoute>
+                element: <AdminRoute><AddItems></AddItems></AdminRoute>
             }
         ]
     },

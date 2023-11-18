@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { axiosSecure } from "./useAxiosSecure";
+import { axiosPublic } from "./useAxiosPublic";
 
 const useMenuData = () => {
     const [loading, setLoading] = useState(true);
@@ -7,7 +7,7 @@ const useMenuData = () => {
 
     useEffect(() => {
         setLoading(true);
-        axiosSecure.get("/api/v1/menus")
+        axiosPublic.get("/api/v1/menus")
         .then(res => {
             setMenus(res.data);
             setLoading(false);

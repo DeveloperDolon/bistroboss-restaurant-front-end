@@ -1,10 +1,10 @@
 import { useMutation } from "@tanstack/react-query";
-import { axiosSecure } from "./useAxiosSecure";
 import toast from "react-hot-toast";
 import useAccessCart from "./useAccessCart";
+import { axiosPublic } from "./useAxiosPublic";
 
 const addToCart = async (product) => {
-    return axiosSecure.post("/api/v1/carts", product);
+    return axiosPublic.post("/api/v1/carts", product);
 }
 
 const useAddCartProduct = () => {
