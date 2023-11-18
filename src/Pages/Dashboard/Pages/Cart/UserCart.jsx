@@ -1,15 +1,30 @@
 import { FaTrash } from "react-icons/fa";
 import SessionTItle from "../../../../Component/SessionTItle";
 import useAccessCart from "../../../../Hooks/useAccessCart";
+import { axiosSecure } from "../../../../Hooks/useAxiosSecure";
+import toast from "react-hot-toast";
 
 
 const UserCart = () => {
 
-    const { data } = useAccessCart();
+    const { data, refetch } = useAccessCart();
 
     const totalPrice = data?.reduce((accumulator, currentItem) => {
         return accumulator + currentItem.product_price;
     }, 0);
+
+    const handleRemoveItem = (id) => {
+        axiosSecure.delete(`/api/v1/carts/${id}`)
+        .then((res => {
+            if(res.data.deletedCount > 0) {
+                toast.success("Item deleted successfully!");
+                refetch();
+            }
+        })) 
+        .catch(err => {
+            toast.error(err.message);
+        })
+    }
 
     return (
         <div className="md:py-10 py-5 bg-[#fafafa]">
@@ -17,7 +32,6 @@ const UserCart = () => {
                 subTitle={"My Cart"}
                 title={"Wanna Add More?"}
             ></SessionTItle>
-
 
             <div className="md:px-7 px-5 md:mt-20 mt-10 mb-28">
                 <div className="bg-white 2xl:w-[80%] mx-auto w-full md:px-14 sm:px-8 px-1 md:py-14 py-8 rounded-lg shadow-md">
@@ -59,15 +73,13 @@ const UserCart = () => {
                                             ${food?.product_price}
                                         </td>
                                         <td className="py-5 md:text-base text-xs">
-                                            <button className="md:text-white text-white md:bg-red-600 md:btn btn-sm bg-red-600 rounded-lg hover:text-black">
+                                            <button onClick={() => handleRemoveItem(food?._id)} className="md:text-white text-white md:bg-red-600 md:btn btn-sm bg-red-600 rounded-lg hover:text-black">
                                                 <FaTrash></FaTrash>
                                             </button>
                                         </td>
                                     </tr>
                                 )
                             }
-
-
                         </tbody>
                     </table>
                 </div>
