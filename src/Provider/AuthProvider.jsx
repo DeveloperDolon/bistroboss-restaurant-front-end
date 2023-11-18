@@ -21,6 +21,7 @@ const AuthProvider = ({ children }) => {
     const auth = getAuth(app);
     const [user, setUser] = useState(null);
     const [loading, setLoading] = useState(true);
+    const isAdmin = true;
 
     const createUser = (email, password) => {
         setLoading(true)
@@ -76,6 +77,7 @@ const AuthProvider = ({ children }) => {
         resetPassword,
         logOut,
         updateUserProfile,
+        isAdmin
     }
 
     return (

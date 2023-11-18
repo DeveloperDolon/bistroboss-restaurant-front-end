@@ -1,7 +1,7 @@
 
 import {
     createBrowserRouter
-  } from "react-router-dom";
+} from "react-router-dom";
 import MainLayout from "../Layout/MainLayout";
 import Home from "../Pages/Home/Home/Home";
 import Menus from "../Pages/OurMenu/OurMenu/OurMenu";
@@ -22,22 +22,7 @@ import UserReview from "../Pages/Dashboard/Pages/Review/UserReview";
 import UserBookings from "../Pages/Dashboard/Bookings/UserBookings";
 import ErrorPage from "../Pages/Error/ErrorPage";
 import AdminHome from "../Pages/Dashboard/AdminPage/AdminHome/AdminHome";
-
-const isAdmin = true;
-
-const DashboardElement = () => {
-   return (
-        <>
-            {
-                isAdmin ? <PrivateRoute>
-                    <AdminHome></AdminHome>
-                </PrivateRoute> : <PrivateRoute>
-                    <UserHome></UserHome>
-                </PrivateRoute>
-            }
-        </>
-   )
-}
+import AddItems from "../Pages/Dashboard/AdminPage/AddItems/AddItems";
 
 const MainRoute = createBrowserRouter([
     {
@@ -71,8 +56,16 @@ const MainRoute = createBrowserRouter([
         element: <PrivateRoute><Dashboard></Dashboard></PrivateRoute>,
         children: [
             {
-                path: "/dashboard/",
-                element: <DashboardElement></DashboardElement>
+                path: "/dashboard/user-home",
+                element: <PrivateRoute>
+                    <UserHome></UserHome>
+                </PrivateRoute>
+            },
+            {
+                path: "/dashboard/admin-home",
+                element: <PrivateRoute>
+                    <AdminHome></AdminHome>
+                </PrivateRoute>
             },
             {
                 path: "/dashboard/reservation/",
@@ -103,6 +96,10 @@ const MainRoute = createBrowserRouter([
             {
                 path: "/dashboard/user-bookings",
                 element: <PrivateRoute><UserBookings></UserBookings></PrivateRoute>
+            },
+            {
+                path: "/dashboard/admin-addItems",
+                element: <PrivateRoute><AddItems></AddItems></PrivateRoute>
             }
         ]
     },

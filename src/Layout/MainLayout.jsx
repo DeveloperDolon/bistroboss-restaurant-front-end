@@ -10,7 +10,7 @@ import useAccessCart from "../Hooks/useAccessCart";
 const MainLayout = () => {
 
     const {data} = useAccessCart();
-    const { user, logOut } = useContext(AuthContext);
+    const { user, logOut, isAdmin } = useContext(AuthContext);
     
     const navItems = <>
         <li>
@@ -20,7 +20,7 @@ const MainLayout = () => {
             <NavLink className="hover:text-lime-300" to="/contact-us">Contact Us</NavLink>
         </li>
         <li>
-            <NavLink className="hover:text-lime-300" to="/dashboard">Dashboard</NavLink>
+            <NavLink className="hover:text-lime-300" to={`/dashboard/${isAdmin ? "admin-home" : "user-home"}`}>Dashboard</NavLink>
         </li>
         <li>
             <NavLink className="hover:text-lime-300" to="/our-menu">Our Menu</NavLink>

@@ -4,16 +4,24 @@ import { GiStarsStack } from "react-icons/gi";
 import { RiBookletFill } from "react-icons/ri";
 import { NavLink, Outlet } from "react-router-dom";
 import { MdMail } from "react-icons/md";
+import { useContext } from "react";
+import { AuthContext } from "../../../Provider/AuthProvider";
 
 const Dashboard = () => {
 
-    const isAdmin = true;
+    const {isAdmin} = useContext(AuthContext);
 
     const adminBars = <>
         <li className="cinzel-text font-bold md:text-lg text-sm">
             <NavLink style={{fontFamily: "'Cinzel', serif"}} className={({ isActive, isPending }) =>
                 isPending ? "pending" : isActive ? "text-white" : ""
-            } to={"/dashboard"}><FaHome className="md:text-2xl text-xl"></FaHome>Admin Home</NavLink>
+            } to={"/dashboard/admin-home"}><FaHome className="md:text-2xl text-xl"></FaHome>Admin Home</NavLink>
+        </li>
+        
+        <li className="cinzel-text font-bold md:text-lg text-sm">
+            <NavLink style={{fontFamily: "'Cinzel', serif"}} className={({ isActive, isPending }) =>
+                isPending ? "pending" : isActive ? "text-white" : ""
+            } to={"/dashboard/admin-addItems"}><FaHome className="md:text-2xl text-xl"></FaHome>Add Items</NavLink>
         </li>
     </>
 
@@ -21,7 +29,7 @@ const Dashboard = () => {
         <li className="cinzel-text font-bold md:text-lg text-sm">
             <NavLink style={{fontFamily: "'Cinzel', serif"}} className={({ isActive, isPending }) =>
                 isPending ? "pending" : isActive ? "text-white" : ""
-            } to={"/dashboard"}><FaHome className="md:text-2xl text-xl"></FaHome>User Home</NavLink>
+            } to={"/dashboard/user-home"}><FaHome className="md:text-2xl text-xl"></FaHome>User Home</NavLink>
         </li>
         <li className="cinzel-text font-bold md:text-lg text-sm">
             <NavLink style={{fontFamily: "'Cinzel', serif"}} className={({ isActive, isPending }) =>

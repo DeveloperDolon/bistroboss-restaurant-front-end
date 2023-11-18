@@ -13,7 +13,7 @@ const AdminHome = () => {
 
     const options = {
         colors: ["#b0120a", "#ffab91"],
-      };
+    };
 
     return (
         <div className="md:py-10 py-5 md:px-7 px-5">
