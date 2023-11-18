@@ -9,17 +9,18 @@ import { useNavigate } from "react-router-dom";
 const AdminRoute = ({ children }) => {
     const { isAdmin, loading, user, logOut } = useContext(AuthContext);
     const navigate = useNavigate();
+    
+    if (user && isAdmin) {
+        return children;
+    }
 
     if (loading) {
         return <div className="h-[calc(100vh-200px)] flex justify-center items-center">
             <PacmanLoader color="#36d7b7" />
         </div>
     }
-
-    if (user && isAdmin) {
-        return children;
-    }
-
+    
+    
     logOut()
         .then(() => {
             toast.success('User logged out Successful!.', {
@@ -35,7 +36,6 @@ const AdminRoute = ({ children }) => {
             });
 
             navigate("/login");
-
 
         })
         .catch(err => {

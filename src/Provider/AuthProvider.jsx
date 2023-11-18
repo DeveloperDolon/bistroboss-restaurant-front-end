@@ -13,6 +13,7 @@ import {
 } from 'firebase/auth';
 import app from "../firebase/firebase.config";
 import useAxiosSecure from "../Hooks/useAxiosSecure";
+import { axiosPublic } from "../Hooks/useAxiosPublic";
 
 
 export const AuthContext = createContext();
@@ -51,6 +52,7 @@ const AuthProvider = ({ children }) => {
     }
 
     const updateUserProfile = (name, photo) => {
+        setLoading(true);
         return updateProfile(auth.currentUser, {
             displayName: name,
             photoURL: photo,
@@ -61,21 +63,29 @@ const AuthProvider = ({ children }) => {
     useEffect(() => {
         const unsubscribe = onAuthStateChanged(auth, currentUser => {
             setUser(currentUser)
-            
-            if(currentUser) {
-                console.log(currentUser)
-                axiosSecure.get(`/api/v1/user?email=${currentUser.email}`)
-                .then(res => {
-                    if(res?.data?.role === "Admin") {
-                        setIsAdmin(true);
-                        return;
-                    }
-                    setIsAdmin(false);
-                })
-                .catch(err => console.log(err.message))
+            setLoading(true);
+            if (currentUser) {
+                setLoading(true);
+                axiosSecure.get(`/api/v1/user?email=${currentUser?.email}`)
+                    .then(res => {
+                        if (res?.data?.role === "Admin") {
+                            console.log("Checking permissions");
+                            setLoading(true);
+                            setIsAdmin(true);
+                        } 
+                    })
+                    .catch(err => console.log(err.message))
+                    console.log(currentUser);
+                axiosPublic.post('/api/v1/jwt', {email: currentUser?.email})
+                    .then(res => {
+                        console.log(res);
+                        if (res.data.token) {
+                            localStorage.setItem('access-token', res.data.token);
+                        }
+                    })
+                    .catch(err => console.log(err.message));
             }
-
-            setLoading(false)
+            setIsAdmin(false);
         })
         return () => {
             return unsubscribe()
