@@ -1,5 +1,4 @@
 import { useContext } from "react";
-import Chart from "react-google-charts";
 import { FaCalendar, FaCartArrowDown, FaPhone, FaStar, FaWallet } from "react-icons/fa";
 import { FaPeopleGroup } from "react-icons/fa6";
 import { AuthContext } from "../../../../Provider/AuthProvider";
@@ -7,14 +6,6 @@ import { AuthContext } from "../../../../Provider/AuthProvider";
 const UserHome = () => {
 
     const { user } = useContext(AuthContext);
-
-    const data = [
-        ["Product", "Quantity"],
-        ["Pizza", 1000],
-        ["Desert", 1170],
-        ["Soups", 660],
-        ["Drinks", 1030],
-    ];
 
     return (
         <div className="md:py-10 py-5 md:px-7 px-5">
@@ -59,15 +50,6 @@ const UserHome = () => {
                     </div>
                 </div>
             </div>
-            {/* TODO: There is a chart for admin panel */}
-            {/* <div className="grid 2xl:grid-cols-2 grid-cols-1 mt-16">
-                <Chart
-                    chartType="Bar"
-                    width="100%"
-                    height="400px"
-                    data={data}
-                />
-            </div> */}
 
             <div className="grid md:grid-cols-2 grid-cols-1 mt-28 rounded-md">
                 <div className="bg-[#FFEDD5] border-r border-[#D1A054] flex justify-center items-center py-16 flex-col px-20 rounded-l-md">

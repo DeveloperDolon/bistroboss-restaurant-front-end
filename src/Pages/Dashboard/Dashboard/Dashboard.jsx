@@ -7,11 +7,21 @@ import { MdMail } from "react-icons/md";
 
 const Dashboard = () => {
 
+    const isAdmin = true;
+
+    const adminBars = <>
+        <li className="cinzel-text font-bold md:text-lg text-sm">
+            <NavLink style={{fontFamily: "'Cinzel', serif"}} className={({ isActive, isPending }) =>
+                isPending ? "pending" : isActive ? "text-white" : ""
+            } to={"/dashboard"}><FaHome className="md:text-2xl text-xl"></FaHome>Admin Home</NavLink>
+        </li>
+    </>
+
     const userBar = <>
         <li className="cinzel-text font-bold md:text-lg text-sm">
             <NavLink style={{fontFamily: "'Cinzel', serif"}} className={({ isActive, isPending }) =>
                 isPending ? "pending" : isActive ? "text-white" : ""
-            } to={"/dashboard/home"}><FaHome className="md:text-2xl text-xl"></FaHome>User Home</NavLink>
+            } to={"/dashboard"}><FaHome className="md:text-2xl text-xl"></FaHome>User Home</NavLink>
         </li>
         <li className="cinzel-text font-bold md:text-lg text-sm">
             <NavLink style={{fontFamily: "'Cinzel', serif"}} className={({ isActive, isPending }) =>
@@ -61,7 +71,14 @@ const Dashboard = () => {
                                 </h2>
                             </div>
                         </li>
-                        {userBar}
+                        
+
+
+                        {/* User and admin NavBars is here */}
+                        {
+                            isAdmin ? adminBars : userBar
+                        }
+
                         <div className="my-5">
                             <hr />
                         </div>

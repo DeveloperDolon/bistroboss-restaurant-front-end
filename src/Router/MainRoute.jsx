@@ -21,6 +21,23 @@ import UserCart from "../Pages/Dashboard/Pages/Cart/UserCart";
 import UserReview from "../Pages/Dashboard/Pages/Review/UserReview";
 import UserBookings from "../Pages/Dashboard/Bookings/UserBookings";
 import ErrorPage from "../Pages/Error/ErrorPage";
+import AdminHome from "../Pages/Dashboard/AdminPage/AdminHome/AdminHome";
+
+const isAdmin = true;
+
+const DashboardElement = () => {
+   return (
+        <>
+            {
+                isAdmin ? <PrivateRoute>
+                    <AdminHome></AdminHome>
+                </PrivateRoute> : <PrivateRoute>
+                    <UserHome></UserHome>
+                </PrivateRoute>
+            }
+        </>
+   )
+}
 
 const MainRoute = createBrowserRouter([
     {
@@ -53,10 +70,9 @@ const MainRoute = createBrowserRouter([
         path: "dashboard",
         element: <PrivateRoute><Dashboard></Dashboard></PrivateRoute>,
         children: [
-            { index: true, element:<h3>Hello world</h3> },
             {
-                path: "/dashboard/home",
-                element: <PrivateRoute><UserHome></UserHome></PrivateRoute>
+                path: "/dashboard/",
+                element: <DashboardElement></DashboardElement>
             },
             {
                 path: "/dashboard/reservation/",
