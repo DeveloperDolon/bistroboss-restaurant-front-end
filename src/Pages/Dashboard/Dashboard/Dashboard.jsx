@@ -36,7 +36,7 @@ const Dashboard = () => {
         <li className="cinzel-text font-bold md:text-lg text-sm">
             <NavLink style={{fontFamily: "'Cinzel', serif"}} className={({ isActive, isPending }) =>
                 isPending ? "pending" : isActive ? "text-white" : ""
-            } to={"/dashboard/booking"}><RiBookletFill className="md:text-2xl text-xl"></RiBookletFill>My Booking</NavLink>
+            } to={"/dashboard/user-bookings"}><RiBookletFill className="md:text-2xl text-xl"></RiBookletFill>My Booking</NavLink>
         </li>
     </>
 
