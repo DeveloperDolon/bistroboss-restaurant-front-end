@@ -20,7 +20,6 @@ const AdminRoute = ({ children }) => {
         </div>
     }
     
-    
     logOut()
         .then(() => {
             toast.success('User logged out Successful!.', {

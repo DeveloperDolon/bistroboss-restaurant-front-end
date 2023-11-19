@@ -24,6 +24,12 @@ const Dashboard = () => {
                 isPending ? "pending" : isActive ? "text-white" : ""
             } to={"/dashboard/admin-addItems"}><FaHome className="md:text-2xl text-xl"></FaHome>Add Items</NavLink>
         </li>
+        
+        <li className="cinzel-text font-bold md:text-lg text-sm">
+            <NavLink style={{fontFamily: "'Cinzel', serif"}} className={({ isActive, isPending }) =>
+                isPending ? "pending" : isActive ? "text-white" : ""
+            } to={"/dashboard/admin-addedItems"}><FaHome className="md:text-2xl text-xl"></FaHome>Manage Items</NavLink>
+        </li>
     </>
 
     const userBar = <>

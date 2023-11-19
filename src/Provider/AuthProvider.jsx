@@ -12,9 +12,7 @@ import {
     updateProfile,
 } from 'firebase/auth';
 import app from "../firebase/firebase.config";
-import useAxiosSecure from "../Hooks/useAxiosSecure";
 import { axiosPublic } from "../Hooks/useAxiosPublic";
-
 
 export const AuthContext = createContext();
 
@@ -24,7 +22,6 @@ const AuthProvider = ({ children }) => {
     const [user, setUser] = useState(null);
     const [loading, setLoading] = useState(true);
     const [isAdmin, setIsAdmin] = useState(false);
-    const axiosSecure = useAxiosSecure();
 
     const createUser = (email, password) => {
         setLoading(true)
@@ -48,7 +45,7 @@ const AuthProvider = ({ children }) => {
 
     const logOut = () => {
         setLoading(true)
-        return signOut(auth)
+        return signOut(auth);
     }
 
     const updateUserProfile = (name, photo) => {
@@ -62,11 +59,11 @@ const AuthProvider = ({ children }) => {
     // onAuthStateChange
     useEffect(() => {
         const unsubscribe = onAuthStateChanged(auth, currentUser => {
-            setUser(currentUser)
+            setUser(currentUser);
             setLoading(true);
             if (currentUser) {
                 setLoading(true);
-                axiosSecure.get(`/api/v1/user?email=${currentUser?.email}`)
+                axiosPublic.get(`/api/v1/user?email=${currentUser?.email}`)
                     .then(res => {
                         if (res?.data?.role === "Admin") {
                             console.log("Checking permissions");

@@ -4,19 +4,16 @@ import { useContext } from "react";
 import { AuthContext } from "../Provider/AuthProvider";
 
 
-const useAccessCart = () => {
-    const {user} = useContext(AuthContext);
+const useAccessItems = () => {
     const axiosSecure = useAxiosSecure();
+    const {user} = useContext(AuthContext);
 
     return useQuery({
-        queryKey: ["cart", user],
+        queryKey: 'access-items',
         queryFn: async () => {
-            const cartData = await axiosSecure.get(`/api/v1/cart?userEmail=${user?.email}`);
-            const datas = await cartData.data;
-            return datas;
-
+            
         }
     })
 };
 
-export default useAccessCart;
+export default useAccessItems;

@@ -24,6 +24,7 @@ import ErrorPage from "../Pages/Error/ErrorPage";
 import AdminHome from "../Pages/Dashboard/AdminPage/AdminHome/AdminHome";
 import AddItems from "../Pages/Dashboard/AdminPage/AddItems/AddItems";
 import AdminRoute from "./AdminRoute";
+import AddedItems from "../Pages/Dashboard/AdminPage/AddedItems/AddedItems";
 
 const MainRoute = createBrowserRouter([
     {
@@ -101,6 +102,10 @@ const MainRoute = createBrowserRouter([
             {
                 path: "/dashboard/admin-addItems",
                 element: <AdminRoute><AddItems></AddItems></AdminRoute>
+            },
+            {
+                path: "/dashboard/admin-addedItems",
+                element: <AdminRoute><AddedItems></AddedItems></AdminRoute>
             }
         ]
     },
