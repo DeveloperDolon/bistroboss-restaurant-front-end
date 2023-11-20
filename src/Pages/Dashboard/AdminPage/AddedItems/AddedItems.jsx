@@ -84,7 +84,7 @@ const AddedItems = () => {
                                             ${food?.price}
                                         </td>
                                         <td className="py-5 md:text-base text-xs">
-                                            <Link to={`/admin-addedItems/${food?._id}`}>
+                                            <Link to={`/dashboard/admin-addedItems/${food?._id}`}>
                                                 <button className="md:text-white text-white md:bg-[#D1A054] md:btn btn-sm bg-[#D1A054] rounded-lg hover:text-black">
                                                     <FaEdit></FaEdit>
                                                 </button>
