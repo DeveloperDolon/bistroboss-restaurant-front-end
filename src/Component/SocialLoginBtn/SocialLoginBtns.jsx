@@ -6,7 +6,7 @@ import { FaGithub } from "react-icons/fa";
 import { AuthContext } from "../../Provider/AuthProvider";
 import toast from "react-hot-toast";
 import { useLocation, useNavigate } from "react-router-dom";
-import { axiosSecure } from "../../Hooks/useAxiosSecure";
+import { axiosPublic } from "../../Hooks/useAxiosPublic";
 
 
 const SocialLoginBtns = () => {
@@ -41,7 +41,7 @@ const SocialLoginBtns = () => {
                 }
 
 
-                axiosSecure.post("/api/v1/users", userInfo)
+                axiosPublic.post("/api/v1/users", userInfo)
                 .then(res => console.log(res)).catch(err => console.log(err.message));
 
                 toast.success('User logged in Successful!.', { id: googleId }, {

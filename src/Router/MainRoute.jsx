@@ -10,7 +10,6 @@ import ContactUs from "../Pages/ContactUs/ContactUs/ContactUs";
 import Login from "../Pages/Login/Login";
 import Register from "../Pages/Register/Register";
 import PrivateRoute from "./PrivateRoute";
-import Cart from "../Pages/Cart/Cart";
 import Dashboard from "../Pages/Dashboard/Dashboard/Dashboard";
 import UserHome from "../Pages/Dashboard/Pages/UserHome/UserHome";
 import Reservation from "../Pages/Dashboard/Pages/UserReservation/Reservation";
@@ -47,10 +46,6 @@ const MainRoute = createBrowserRouter([
                 path: "contact-us",
                 element: <ContactUs></ContactUs>
             },
-            {
-                path: "cart",
-                element: <PrivateRoute><Cart></Cart></PrivateRoute>
-            }
         ]
     },
     {

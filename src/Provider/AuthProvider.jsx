@@ -22,10 +22,11 @@ const AuthProvider = ({ children }) => {
     const [user, setUser] = useState(null);
     const [loading, setLoading] = useState(true);
     const [isAdmin, setIsAdmin] = useState(false);
+    const [token, setToken] = useState(null);
 
     const createUser = (email, password) => {
         setLoading(true)
-        return createUserWithEmailAndPassword(auth, email, password)
+        return createUserWithEmailAndPassword(auth, email, password);
     }
 
     const signIn = (email, password) => {
@@ -62,28 +63,29 @@ const AuthProvider = ({ children }) => {
             setUser(currentUser);
             setLoading(true);
             if (currentUser) {
-                setLoading(true);
                 axiosPublic.get(`/api/v1/user?email=${currentUser?.email}`)
                     .then(res => {
                         if (res?.data?.role === "Admin") {
-                            console.log("Checking permissions");
-                            setLoading(true);
-                            setIsAdmin(true);
-                        } 
+                            setIsAdmin(res?.data?.role === "Admin");
+                            console.log("Checking permissions", res?.data?.role === "Admin");
+                        }
                     })
-                    .catch(err => console.log(err.message))
-                    console.log(currentUser);
+                    .catch(err => console.log(err.message));
+
                 axiosPublic.post('/api/v1/jwt', {email: currentUser?.email})
                     .then(res => {
-                        console.log(res);
+                        console.log("Token for email ",currentUser?.email);
                         if (res.data.token) {
+                            setToken(res.data.token);
                             localStorage.setItem('access-token', res.data.token);
                         }
                     })
                     .catch(err => console.log(err.message));
             }
-            setIsAdmin(false);
+
+            setLoading(false);    
         })
+
         return () => {
             return unsubscribe()
         }
@@ -99,7 +101,9 @@ const AuthProvider = ({ children }) => {
         resetPassword,
         logOut,
         updateUserProfile,
-        isAdmin
+        isAdmin,
+        setUser,
+        token
     }
 
     return (

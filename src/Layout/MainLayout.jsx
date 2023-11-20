@@ -49,6 +49,11 @@ const MainLayout = () => {
                     secondary: '#FFFAEE',
                 },
             });
+            
+            localStorage.removeItem('access-token');
+            // Redirect to a new URL
+            window.location.href = "http://localhost:5173/";
+
         }).catch(err => {
             toast.error(err.message, {
                 style: {
@@ -90,12 +95,12 @@ const MainLayout = () => {
 
                             {
                                 user && <div className="flex gap-3">
-                                    <NavLink className="relative" to={"/cart"}>
+                                    <span className="relative">
                                         <img className="md:w-12 w-10" src={cartImg} alt="" />
                                         <span 
                                         className="md:text-sm text-xs bg-red-500 text-black absolute px-2 rounded-full bottom-0 right-[1px]"
                                         >{data?.length || 0}</span>
-                                    </NavLink>
+                                    </span>
                                     <button className="uppercase text-sm" onClick={handleLogOut}>Log Out</button>
                                     <img className="md:w-10 w-8 rounded-full" src={user?.photoURL ? user?.photoURL : defaultUserImg} title={user?.displayName || "User Image"} alt={user?.displayName || "Users Image"} />
                                 </div>

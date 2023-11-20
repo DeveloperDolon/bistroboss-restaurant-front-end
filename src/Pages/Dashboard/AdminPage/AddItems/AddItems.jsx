@@ -29,6 +29,7 @@ const AddItems = () => {
         const recipeData = {
             name: data.name,
             recipe: data.recipe,
+            // dolonr718@gmail.com
             image: imageUrl,
             category: data.category,
             price: data.price

@@ -1,16 +1,29 @@
 
 import PropTypes from "prop-types";
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { AuthContext } from "../Provider/AuthProvider";
 import { PacmanLoader } from "react-spinners";
 import toast from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
+import { axiosPublic } from "../Hooks/useAxiosPublic";
 
 const AdminRoute = ({ children }) => {
-    const { isAdmin, loading, user, logOut } = useContext(AuthContext);
+    const [admin, setAdmin] = useState(true);
+    const { loading, user, logOut } = useContext(AuthContext);
     const navigate = useNavigate();
-    
-    if (user && isAdmin) {
+
+    if(user) {
+        axiosPublic.get(`/api/v1/user?email=${user?.email}`)
+                    .then(res => {
+                        if (res?.data?.role === "Admin") {
+                            setAdmin(res?.data?.role === "Admin");
+                            console.log("Checking permissions", res?.data?.role === "Admin");
+                        }
+                    })
+                    .catch(err => console.log(err.message))
+    }
+
+    if (admin && user) {
         return children;
     }
 
@@ -22,7 +35,7 @@ const AdminRoute = ({ children }) => {
     
     logOut()
         .then(() => {
-            toast.success('User logged out Successful!.', {
+            toast.success('User logged out!.', {
                 style: {
                     border: '1px solid black',
                     padding: '16px',
@@ -33,7 +46,6 @@ const AdminRoute = ({ children }) => {
                     secondary: '#FFFAEE',
                 },
             });
-
             navigate("/login");
 
         })
