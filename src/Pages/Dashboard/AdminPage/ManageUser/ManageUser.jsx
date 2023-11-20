@@ -1,10 +1,12 @@
 import { FaEdit, FaTrash } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import SessionTItle from "../../../../Component/SessionTItle";
+import useAccessAllUser from "../../../../Hooks/userAccessAllUser";
 
 
 const ManageUser = () => {
-
+    const {data: users} = useAccessAllUser();
+    console.log(users);
     const data = [1, 2, 3, 4, 5,];
 
     return (
