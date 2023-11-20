@@ -4,13 +4,11 @@ import { useContext, useState } from "react";
 import { AuthContext } from "../Provider/AuthProvider";
 import { PacmanLoader } from "react-spinners";
 import toast from "react-hot-toast";
-import { useNavigate } from "react-router-dom";
 import { axiosPublic } from "../Hooks/useAxiosPublic";
 
 const AdminRoute = ({ children }) => {
     const [admin, setAdmin] = useState(true);
     const { loading, user, logOut } = useContext(AuthContext);
-    const navigate = useNavigate();
 
     if(user) {
         axiosPublic.get(`/api/v1/user?email=${user?.email}`)
@@ -46,7 +44,7 @@ const AdminRoute = ({ children }) => {
                     secondary: '#FFFAEE',
                 },
             });
-            navigate("/login");
+            window.location.href = "http://localhost:5173/login";
 
         })
         .catch(err => {

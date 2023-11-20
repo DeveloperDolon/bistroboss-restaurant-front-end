@@ -1,7 +1,7 @@
 import axios from "axios";
 import { useContext } from "react";
 import { AuthContext } from "../Provider/AuthProvider";
-import { useNavigate } from "react-router-dom";
+
 import toast from "react-hot-toast";
 
 export const axiosSecure = axios.create({
@@ -9,7 +9,6 @@ export const axiosSecure = axios.create({
 })
 
 const useAxiosSecure = () => {
-    const navigate = useNavigate();
     const { logOut, user, token } = useContext(AuthContext);
     
     // request interceptor to add authorization header for every secure call to teh api
@@ -37,7 +36,7 @@ const useAxiosSecure = () => {
                     .then(() => {
                         localStorage.removeItem('access-token');
                         toast.success("User logged out!");
-                        navigate('/login');
+                        window.location.href = "http://localhost:5173/login";
                     }).catch(err => {
                         toast.error(err.message)
                     })
