@@ -25,6 +25,7 @@ import AddItems from "../Pages/Dashboard/AdminPage/AddItems/AddItems";
 import AdminRoute from "./AdminRoute";
 import AddedItems from "../Pages/Dashboard/AdminPage/AddedItems/AddedItems";
 import UpdateItem from "../Pages/Dashboard/AdminPage/UpdateItem/UpdateItem";
+import ManageUser from "../Pages/Dashboard/AdminPage/ManageUser/ManageUser";
 
 const MainRoute = createBrowserRouter([
     {
@@ -107,6 +108,10 @@ const MainRoute = createBrowserRouter([
                 path: "/dashboard/admin-addedItems/:id",
                 loader: ({params}) => fetch(`http://localhost:5000/api/v1/admin-addedItems/${params.id}`),
                 element: <AdminRoute><UpdateItem></UpdateItem></AdminRoute>
+            },
+            {
+                path: "/dashboard/manage-users",
+                element: <AdminRoute><ManageUser></ManageUser></AdminRoute>
             }
         ]
     },

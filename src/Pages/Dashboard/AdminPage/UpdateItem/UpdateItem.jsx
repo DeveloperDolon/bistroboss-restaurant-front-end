@@ -6,7 +6,7 @@ import toast from "react-hot-toast";
 import { useContext } from "react";
 import { AuthContext } from "../../../../Provider/AuthProvider";
 import { useForm } from "react-hook-form";
-import { useLoaderData } from "react-router-dom";
+import { useLoaderData, useNavigate } from "react-router-dom";
 
 
 const UpdateItem = () => {
@@ -14,10 +14,9 @@ const UpdateItem = () => {
     const { user } = useContext(AuthContext);
     const { register, handleSubmit, reset } = useForm();
     const defaultData = useLoaderData();
-
+    const navigate = useNavigate();
 
     const onSubmit = async (data) => {
-
         const itemsAddId = toast.loading("Item updating...");
 
         const recipeData = {
@@ -29,10 +28,10 @@ const UpdateItem = () => {
 
         axiosSecure.patch(`/api/v1/update-item/${defaultData._id}?email=${user?.email}`, recipeData)
             .then(res => {
-                console.log(res);
                 if (res.data.modifiedCount) {
                     toast.success("Product updated successfully!", { id: itemsAddId });
                     reset();
+                    navigate("/dashboard/admin-addedItems")
                 }
             }).catch(err => {
                 toast.error(err.message, { id: itemsAddId });

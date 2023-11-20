@@ -1,5 +1,5 @@
-import { FaBars, FaCalendarAlt, FaHome, FaShoppingCart, FaWallet } from "react-icons/fa";
-import { FaShop } from "react-icons/fa6";
+import { FaBars, FaCalendarAlt, FaHome, FaShoppingCart, FaUtensils, FaWallet } from "react-icons/fa";
+import { FaPeopleGroup, FaShop } from "react-icons/fa6";
 import { GiStarsStack } from "react-icons/gi";
 import { RiBookletFill } from "react-icons/ri";
 import { NavLink, Outlet } from "react-router-dom";
@@ -22,13 +22,19 @@ const Dashboard = () => {
         <li className="cinzel-text font-bold md:text-lg text-sm">
             <NavLink style={{fontFamily: "'Cinzel', serif"}} className={({ isActive, isPending }) =>
                 isPending ? "pending" : isActive ? "text-white" : ""
-            } to={"/dashboard/admin-addItems"}><FaHome className="md:text-2xl text-xl"></FaHome>Add Items</NavLink>
+            } to={"/dashboard/admin-addItems"}><FaUtensils className="md:text-2xl text-xl"></FaUtensils>Add Items</NavLink>
         </li>
         
         <li className="cinzel-text font-bold md:text-lg text-sm">
             <NavLink style={{fontFamily: "'Cinzel', serif"}} className={({ isActive, isPending }) =>
                 isPending ? "pending" : isActive ? "text-white" : ""
-            } to={"/dashboard/admin-addedItems"}><FaHome className="md:text-2xl text-xl"></FaHome>Manage Items</NavLink>
+            } to={"/dashboard/admin-addedItems"}><FaBars className="md:text-2xl text-xl"></FaBars>Manage Items</NavLink>
+        </li>
+        
+        <li className="cinzel-text font-bold md:text-lg text-sm">
+            <NavLink style={{fontFamily: "'Cinzel', serif"}} className={({ isActive, isPending }) =>
+                isPending ? "pending" : isActive ? "text-white" : ""
+            } to={"/dashboard/manage-users"}><FaPeopleGroup className="md:text-2xl text-xl"></FaPeopleGroup>All Users</NavLink>
         </li>
     </>
 
