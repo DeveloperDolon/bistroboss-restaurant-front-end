@@ -1,13 +1,12 @@
-import { FaEdit, FaTrash } from "react-icons/fa";
+import { FaTrash, FaUser } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import SessionTItle from "../../../../Component/SessionTItle";
 import useAccessAllUser from "../../../../Hooks/userAccessAllUser";
+import { RiAdminFill } from "react-icons/ri";
 
 
 const ManageUser = () => {
-    const {data: users} = useAccessAllUser();
-    console.log(users);
-    const data = [1, 2, 3, 4, 5,];
+    const {data} = useAccessAllUser();
 
     return (
         <div className="md:py-10 py-5 bg-[#fafafa]">
@@ -35,26 +34,35 @@ const ManageUser = () => {
                         </thead>
                         <tbody>
                             {
-                                data?.map((food, idx) =>
-                                    <tr key={food?._id}>
+                                data?.map((user, idx) =>
+                                    <tr key={user?._id}>
                                         <td className="py-5 font-bold md:text-base text-xs">
                                             {idx + 1}
                                         </td>
                                         <td className="py-5 md:text-base text-xs">
-                                            <img className="md:w-40 w-20 rounded-md" src={food?.image} alt="" />
+                                           {user?.name}
                                         </td>
                                         <td className="py-5 md:text-base text-xs">
-                                            {food?.name}
+                                            {user?.email}
                                         </td>
                                         <td className="py-5 md:text-base text-xs">
-                                            <Link to={`/dashboard/admin-addedItems/${food?._id}`}>
+
+                                            {
+                                                user?.role === "Admin" ? 
+                                                <Link>
                                                 <button className="md:text-white text-white md:bg-[#D1A054] md:btn btn-sm bg-[#D1A054] rounded-lg hover:text-black">
-                                                    <FaEdit></FaEdit>
+                                                    <RiAdminFill></RiAdminFill>
                                                 </button>
                                             </Link>
+                                                :  <Link>
+                                                <button className="md:text-white text-white md:bg-[#D1A054] md:btn btn-sm bg-[#D1A054] rounded-lg hover:text-black">
+                                                    <FaUser></FaUser>
+                                                </button>
+                                            </Link>
+                                            }
                                         </td>
                                         <td className="py-5 md:text-base text-xs">
-                                            <button onClick={() => handleDeleteItem(food?._id)} className="md:text-white text-white md:bg-red-600 md:btn btn-sm bg-red-600 rounded-lg hover:text-black">
+                                            <button onClick={() => handleDeleteItem(user?._id)} className="md:text-white text-white md:bg-red-600 md:btn btn-sm bg-red-600 rounded-lg hover:text-black">
                                                 <FaTrash></FaTrash>
                                             </button>
                                         </td>

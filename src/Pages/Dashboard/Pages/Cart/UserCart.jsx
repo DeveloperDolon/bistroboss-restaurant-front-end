@@ -3,6 +3,7 @@ import SessionTItle from "../../../../Component/SessionTItle";
 import useAccessCart from "../../../../Hooks/useAccessCart";
 import { axiosSecure } from "../../../../Hooks/useAxiosSecure";
 import toast from "react-hot-toast";
+import { Link } from "react-router-dom";
 
 
 const UserCart = () => {
@@ -15,15 +16,15 @@ const UserCart = () => {
 
     const handleRemoveItem = (id) => {
         axiosSecure.delete(`/api/v1/carts/${id}`)
-        .then((res => {
-            if(res.data.deletedCount > 0) {
-                toast.success("Item deleted successfully!");
-                refetch();
-            }
-        })) 
-        .catch(err => {
-            toast.error(err.message);
-        })
+            .then((res => {
+                if (res.data.deletedCount > 0) {
+                    toast.success("Item deleted successfully!");
+                    refetch();
+                }
+            }))
+            .catch(err => {
+                toast.error(err.message);
+            })
     }
 
     return (
@@ -37,12 +38,20 @@ const UserCart = () => {
                 <div className="bg-white 2xl:w-[80%] mx-auto w-full md:px-14 sm:px-8 px-1 md:py-14 py-8 rounded-lg shadow-md">
                     <div className="flex justify-between flex-wrap sm:gap-0 gap-5">
                         <h1 className="md:text-3xl text-xl font-bold cinzel-text">Total Orders : {data?.length}</h1>
-                        
+
                         <h1 className="md:text-3xl text-xl font-bold cinzel-text">Total Price : ${totalPrice > 0 ? totalPrice : 0}</h1>
 
-                        <button className="btn bg-[#D1A054] text-white hover:text-black">
-                            Pay
-                        </button>
+
+                        {
+                            data.length ? <Link to="/dashboard/reservation/user-payment">
+                                <button className="btn bg-[#D1A054] text-white hover:text-black">
+                                    Pay
+                                </button>
+                            </Link> :
+                                <button disabled className="btn bg-[#D1A054] text-white hover:text-black">
+                                    Pay
+                                </button>
+                        }
                     </div>
 
                     <table className="table w-full relative border md:rounded-t-2xl rounded-lg overflow-hidden bg-white mt-12">
