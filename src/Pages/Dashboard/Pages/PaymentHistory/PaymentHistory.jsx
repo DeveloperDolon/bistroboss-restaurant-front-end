@@ -1,8 +1,11 @@
 import SessionTItle from "../../../../Component/SessionTItle";
+import usePaymentHistory from "../../../../Hooks/usePaymentHistory";
 
 
 const PaymentHistory = () => {
-    const myFoods = [1, 2, 3, 4, 5];
+
+    const {data} = usePaymentHistory();
+
     return (
         <div className="md:py-10 py-5 min-h-screen bg-[#fafafa]">
             <SessionTItle
@@ -12,7 +15,7 @@ const PaymentHistory = () => {
 
             <div className="md:px-7 px-5 md:mt-20 mt-10 mb-28">
                 <div className="bg-white 2xl:w-[80%] mx-auto w-full md:px-14 sm:px-8 px-1 md:py-14 py-8 rounded-lg shadow-md">
-                    <h1 className="md:text-4xl text-2xl font-bold cinzel-text">Total Payments : 6</h1>
+                    <h1 className="md:text-4xl text-2xl font-bold cinzel-text">Total Payments : {data?.length ? data.length : 0}</h1>
 
                     <div className="mt-10">
                         <table className="table w-full relative border md:rounded-t-2xl rounded-lg overflow-hidden bg-white">
@@ -29,21 +32,21 @@ const PaymentHistory = () => {
                                 {/* row 1 */}
 
                                 {
-                                    myFoods.length > 0 ? <>
+                                    data?.length > 0 ? <>
                                         {
-                                            myFoods?.map(food => <>
+                                            data?.map(food => <>
                                                 <tr>
                                                     <td className="py-5 md:text-base text-xs">
-                                                        info@gmail.com{food}
+                                                        {food?.email}
                                                     </td>
                                                     <td className="py-5 md:text-base text-xs">
-                                                        Food Order
+                                                        {food?.category ? food?.category : "Food Order"}
                                                     </td>
                                                     <td className="py-5 md:text-base text-xs">
-                                                        $567
+                                                        ${food?.price}
                                                     </td>
                                                     <td className="py-5 md:text-base text-xs">
-                                                        Monday, April 10, 2023
+                                                        {food?.date}
                                                     </td>
                                                 </tr>
                                             </>)

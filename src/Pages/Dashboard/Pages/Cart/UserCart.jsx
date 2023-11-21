@@ -43,7 +43,7 @@ const UserCart = () => {
 
 
                         {
-                            data.length ? <Link to="/dashboard/reservation/user-payment">
+                            data?.length ? <Link to="/dashboard/reservation/user-payment">
                                 <button className="btn bg-[#D1A054] text-white hover:text-black">
                                     Pay
                                 </button>
