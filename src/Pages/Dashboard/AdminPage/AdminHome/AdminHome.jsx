@@ -1,8 +1,14 @@
 import { FaWallet } from "react-icons/fa";
 import { FaBowlFood, FaPeopleGroup, FaVanShuttle } from "react-icons/fa6";
 import Chart from "react-google-charts";
+import useAccessStats from "../../../../Hooks/useAccessStats";
 
 const AdminHome = () => {
+
+    const {data: statsData} = useAccessStats();
+
+    console.log(statsData);
+
     const data = [
         ["Sold", "Quantity"],
         ["Pizza", 1000],
@@ -27,7 +33,7 @@ const AdminHome = () => {
                     <FaWallet className="sm:text-5xl text-4xl"></FaWallet>
 
                     <div>
-                        <h1 className="sm:text-5xl text-3xl font-bold">1000</h1>
+                        <h1 className="sm:text-5xl text-3xl font-bold">{statsData?.totalRevenue}</h1>
                         <h3 className="sm:text-2xl text-lg font-semibold">Revenue</h3>
                     </div>
                 </div>
@@ -40,7 +46,7 @@ const AdminHome = () => {
                     <FaPeopleGroup className="sm:text-5xl text-4xl"></FaPeopleGroup>
 
                     <div>
-                        <h1 className="sm:text-5xl text-3xl font-bold">1500</h1>
+                        <h1 className="sm:text-5xl text-3xl font-bold">{statsData?.users}</h1>
                         <h3 className="sm:text-2xl text-lg font-semibold">Customers</h3>
                     </div>
                 </div>
@@ -53,7 +59,7 @@ const AdminHome = () => {
                     <FaBowlFood className="sm:text-5xl text-4xl"></FaBowlFood>
 
                     <div>
-                        <h1 className="sm:text-5xl text-3xl font-bold">103</h1>
+                        <h1 className="sm:text-5xl text-3xl font-bold">{statsData?.menuItems}</h1>
                         <h3 className="sm:text-2xl text-lg font-semibold">Product</h3>
                     </div>
                 </div>
@@ -66,7 +72,7 @@ const AdminHome = () => {
                     <FaVanShuttle className="sm:text-5xl text-4xl"></FaVanShuttle>
 
                     <div>
-                        <h1 className="sm:text-5xl text-3xl font-bold">500</h1>
+                        <h1 className="sm:text-5xl text-3xl font-bold">{statsData?.orders}</h1>
                         <h3 className="sm:text-2xl text-lg font-semibold">Orders</h3>
                     </div>
                 </div>
